@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Thief Catcher</string>
+    <string name="tab_text_1">LIVE CAMERA</string>
+    <string name="tab_text_2">PHOTOS</string>
+</resources>
