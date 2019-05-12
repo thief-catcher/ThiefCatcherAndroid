@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.jbosak.mesproject.thiefcatcher.CapturedImage
 import com.jbosak.mesproject.thiefcatcher.R
 
-class ImageAdapter(private val images: MutableList<Bitmap>): RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter(private val images: MutableList<CapturedImage>): RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ImageViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -21,8 +22,9 @@ class ImageAdapter(private val images: MutableList<Bitmap>): RecyclerView.Adapte
     override fun getItemCount(): Int = images.size
 
     override fun onBindViewHolder(holder: ImageViewHolder, p1: Int) {
+        holder.date.text = images[p1].name
 
-        holder.img.setImageBitmap(images[p1])
+        holder.img.setImageBitmap(images[p1].img)
     }
 
     class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view){

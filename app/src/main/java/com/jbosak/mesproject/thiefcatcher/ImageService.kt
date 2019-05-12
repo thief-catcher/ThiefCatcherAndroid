@@ -6,21 +6,35 @@ import android.util.Log
 import android.widget.ImageView
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+
 
 class ImageService(context: Context){
+    private val BACKEND_URL = "http://192.168.0.107:5000"
     private val queue = Volley.newRequestQueue(context)!!
 
-    fun fetchImages(images: MutableList<Bitmap>, onUpdate: () -> Unit){
+    fun fetchImages(images: MutableList<CapturedImage>, onUpdate: () -> Unit){
+        val request2 = StringRequest("$BACKEND_URL/api/images", Response.Listener<String> { response ->
+            println(response)
+            val gson = Gson()
+            val imgs = gson.fromJson<Array<CapturedImage>>(response, Array<CapturedImage>::class.java)
+            imgs.forEach {
+                val request = ImageRequest( BACKEND_URL + "/api/images/" + it.name , Response.Listener<Bitmap> { response ->
+                    it.img = response
+                    images.add(it)
+                    onUpdate()
+                }, 800,1000, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
+                    Response.ErrorListener {error ->
+                        Log.e(error.toString(), "ERROR")
+                    })
+                queue.add(request)
+            }
 
-        val request = ImageRequest( "http://192.168.0.107:8000/my_photo-10.jpg", Response.Listener<Bitmap> { response ->
-            images.add(response)
-            onUpdate()
-        }, 800,1000, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
-            Response.ErrorListener {
-                Log.e(it.toString(), "ERROR")
-            })
-        queue.add(request)
+
+        }, Response.ErrorListener {  })
+        queue.add(request2)
 
     }
 }

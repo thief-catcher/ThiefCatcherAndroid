@@ -14,6 +14,7 @@ import android.widget.ImageView
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.Volley
+import com.jbosak.mesproject.thiefcatcher.CapturedImage
 import com.jbosak.mesproject.thiefcatcher.ImageService
 import com.jbosak.mesproject.thiefcatcher.R
 
@@ -31,7 +32,7 @@ class GalleryFragment : Fragment() {
         viewManager = LinearLayoutManager(view.context)
 
         val imageService = ImageService(view.context)
-        var images = mutableListOf<Bitmap>()
+        var images = mutableListOf<CapturedImage>()
         viewAdapter = ImageAdapter(images)
         imageService.fetchImages(images) { viewAdapter.notifyDataSetChanged() }
 
