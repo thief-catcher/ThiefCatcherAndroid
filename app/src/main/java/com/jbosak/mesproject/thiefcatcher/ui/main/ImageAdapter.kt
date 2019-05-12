@@ -28,8 +28,6 @@ class ImageAdapter(private val images: MutableList<CapturedImage>): RecyclerView
         val date : Date = SimpleDateFormat("yyyy-MM-DD'T'hhmmss.SSSS").parse(images[p1].name)
 
         holder.date.text = SimpleDateFormat("yyyy-MM-DD  hh:mm:ss").format(date)
-        holder.date.text = images[p1].name
-
         holder.img.setImageBitmap(images[p1].img)
     }
 
