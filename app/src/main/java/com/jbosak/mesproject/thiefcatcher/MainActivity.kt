@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
+        val imgService = ImageService(this)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            imgService.captureImage{ sectionsPagerAdapter.notifyDataSetChanged() }
+
+
         }
     }
 }

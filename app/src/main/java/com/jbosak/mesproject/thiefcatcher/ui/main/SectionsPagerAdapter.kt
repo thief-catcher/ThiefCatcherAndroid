@@ -1,9 +1,12 @@
 package com.jbosak.mesproject.thiefcatcher.ui.main
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.util.Log
 import com.jbosak.mesproject.thiefcatcher.R
 
 private val TAB_TITLES = arrayOf(
@@ -17,13 +20,20 @@ private val TAB_TITLES = arrayOf(
  */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
+    private val gallery = GalleryFragment()
+
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         return when (position){
             0 -> LiveCameraFragment()
-            else -> GalleryFragment()
+            else -> { gallery }
         }
+    }
+
+    override fun notifyDataSetChanged() {
+        gallery.updateImages()
+        super.notifyDataSetChanged()
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
