@@ -26,7 +26,7 @@ class ImageService(context: Context){
                 .forEach {
                 val request = ImageRequest( BACKEND_URL + "/api/images/" + it.name , Response.Listener<Bitmap> { response ->
                     it.img = response
-                    images.add(it)
+                    images.add(0,it)
                     onUpdate()
                 }, 800,1000, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565,
                     Response.ErrorListener {error ->
