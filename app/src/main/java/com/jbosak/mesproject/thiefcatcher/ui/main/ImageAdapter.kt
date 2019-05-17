@@ -25,7 +25,7 @@ class ImageAdapter(private val images: MutableList<CapturedImage>): RecyclerView
 
     @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ImageViewHolder, p1: Int) {
-        val date : Date = SimpleDateFormat("yyyy-MM-DD'T'hhmmss.SSSS").parse(images[p1].name)
+        val date : Date = SimpleDateFormat("yyyy-MM-DD'T'hh:mm:ss.SSSS").parse(images[p1].name)
 
         holder.date.text = SimpleDateFormat("yyyy-MM-DD  hh:mm:ss").format(date)
         holder.img.setImageBitmap(images[p1].img)
