@@ -46,7 +46,7 @@ class ImageService(context: Context){
 
     fun captureImage(onUpdate: () -> Unit){
         val x = StringRequest(
-            "$BACKEND_URL/api/images/capture",
+            "$BACKEND_URL/api/capture",
             Response.Listener<String> {
                 Log.e("captureImage", "onResponse")
                 onUpdate() },
