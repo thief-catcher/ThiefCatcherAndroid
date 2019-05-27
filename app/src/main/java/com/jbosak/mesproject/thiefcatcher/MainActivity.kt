@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import com.jbosak.mesproject.thiefcatcher.ui.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -25,8 +26,9 @@ class MainActivity : AppCompatActivity() {
         val imgService = ImageService(this)
         fab.setOnClickListener { view ->
             imgService.captureImage{ sectionsPagerAdapter.notifyDataSetChanged() }
-
-
         }
+
+        supportActionBar?.hide()
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
