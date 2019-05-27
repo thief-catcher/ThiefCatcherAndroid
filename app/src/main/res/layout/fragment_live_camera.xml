@@ -5,10 +5,11 @@
              android:layout_height="match_parent"
              tools:context=".ui.main.LiveCameraFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <WebView
+            android:id="@+id/web_live_camera"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
-
+            android:background="@color/cardview_dark_background"
+    />
 </FrameLayout>
+
