@@ -10,7 +10,8 @@ class AlarmReceiver:BroadcastReceiver(){
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-
+        val i = Intent(context, AlarmService::class.java)
+        context?.startService(i)
     }
 
 }

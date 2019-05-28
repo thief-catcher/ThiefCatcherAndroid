@@ -24,6 +24,8 @@
                 android:name=".alarm.AlarmReceiver"
                 android:process=":remote" >
         </receiver>
+        <service android:name=".alarm.AlarmService">
+        </service>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
