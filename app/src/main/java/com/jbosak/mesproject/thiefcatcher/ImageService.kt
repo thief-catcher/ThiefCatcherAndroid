@@ -9,22 +9,22 @@ import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.jbosak.mesproject.thiefcatcher.retrofit.RetrofitBuilder
 import kotlin.coroutines.coroutineContext
 
 
 class ImageService(context: Context){
-    private val BACKEND_URL = "http://192.168.0.107:5000"
     private val queue = Volley.newRequestQueue(context)!!
 
     fun fetchImages(images: MutableList<CapturedImage>, onUpdate: () -> Unit){
 
-        val request2 = StringRequest("$BACKEND_URL/api/images", Response.Listener<String> { response ->
+        val request2 = StringRequest("${RetrofitBuilder.baseUrl}api/images", Response.Listener<String> { response ->
 
             val imgs = Gson().fromJson<Array<CapturedImage>>(response, Array<CapturedImage>::class.java)
             imgs
                 .filter { images.contains(it).not() }
                 .forEach {
-                val request = ImageRequest( BACKEND_URL + "/api/images/" + it.name , Response.Listener<Bitmap> { response ->
+                val request = ImageRequest( RetrofitBuilder.baseUrl + "api/images/" + it.name , Response.Listener<Bitmap> { response ->
                     it.img = response
                     images.add(0,it)
                     onUpdate()
@@ -46,7 +46,7 @@ class ImageService(context: Context){
 
     fun captureImage(onUpdate: () -> Unit){
         val x = StringRequest(
-            "$BACKEND_URL/api/capture",
+            "${RetrofitBuilder.baseUrl}api/capture",
             Response.Listener<String> {
                 Log.e("captureImage", "onResponse")
                 onUpdate() },

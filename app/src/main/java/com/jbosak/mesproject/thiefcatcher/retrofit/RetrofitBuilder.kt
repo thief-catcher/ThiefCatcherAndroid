@@ -5,15 +5,15 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitBuilder{
-        fun create(): ImageInfoService {
-
-            val retrofit = Retrofit.Builder()
-                .addCallAdapterFactory(
-                    RxJava2CallAdapterFactory.create())
-                .addConverterFactory(
-                    GsonConverterFactory.create())
-                .baseUrl("http://192.168.0.114:5000/")
-                .build()
+    companion object {
+        const val baseUrl = "http://192.168.0.114:5000/"
+    }
+    fun create(): ImageInfoService {
+        val retrofit = Retrofit.Builder()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(baseUrl)
+            .build()
 
             return retrofit.create(ImageInfoService::class.java)
         }

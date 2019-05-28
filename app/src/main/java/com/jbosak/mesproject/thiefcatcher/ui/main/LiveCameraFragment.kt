@@ -10,6 +10,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 
 import com.jbosak.mesproject.thiefcatcher.R
+import com.jbosak.mesproject.thiefcatcher.retrofit.RetrofitBuilder
 
 
 class LiveCameraFragment : Fragment() {
@@ -28,7 +29,7 @@ class LiveCameraFragment : Fragment() {
         val web = view.findViewById<WebView>(R.id.web_live_camera)
         web.webViewClient = WebViewClient()
 
-        web.loadUrl("http://192.168.0.107:5000/api/live")
+        web.loadUrl("${RetrofitBuilder.baseUrl}api/live")
     }
 }
 
