@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitBuilder{
     companion object {
-        const val baseUrl = "http://192.168.0.114:5000/"
+        const val baseUrl = "http://192.168.43.114:5000/"
     }
     fun create(): ImageInfoService {
         val retrofit = Retrofit.Builder()
